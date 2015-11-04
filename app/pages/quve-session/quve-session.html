@@ -1,0 +1,92 @@
+<dom-module id="quve-session">
+	<template>
+		<iron-ajax id="ajax"
+			auto
+            headers='{"X-Requested-With": "XMLHttpRequest"}'
+            handleAs='json'
+            method='GET'
+            on-response='loadSession'> 
+		</iron-ajax>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-session",
+			behaviors : [
+				QuveBehaviors.Api
+			],
+			properties : {
+				principal : {
+					type: Object
+				},
+				params : {
+					type: Object,
+					value : {}
+				},
+				quveToken : {
+					type: Object,
+					value : {}
+				}
+			},			
+			ready : function(){
+				this.$.ajax.url = this.getUrl("session");
+			},
+			loadSession : function(e){
+				this.principal = this.decorate(e.detail.response.principal);
+				this.quveToken = {sessionKey : e.detail.response.key};				
+				this.params.quvetoken = JSON.stringify(this.quveToken);
+				this.fire('session-getted', this.principal);
+				console.log("session received! -> "+ this.principal.user.name);				
+			},
+			decorate : function(principal){
+				principal.hasRole = function(roleTxt, roles){
+					//console.log("----- roles: ", roles);
+					var funcAction = roleTxt.split(".");
+					var result;
+					roles.forEach(function (item, index){
+						//console.log(item.name," ------------------------ ");					
+						var role = item.roleset[funcAction[0]];
+						if (role!=undefined){
+							//console.log(funcAction[0]," --- ",role);
+							var is = role.some(function(a){
+								return parseInt(funcAction[1])===a;
+							});
+							//console.log("action:", funcAction[1], " is in ",role," - >",is);
+							if (is){
+								result = true;
+								return false;
+							}
+						}
+					});
+					//console.log("devuelve hasRole", result);
+					return result;
+				};
+				principal.hasAccess = function(role, context){
+					if (role===undefined && (context===undefined || Object.keys(context).length===0))
+						return true;
+					var result;
+					if (context!=undefined){
+						//console.log(" CONTEXT ----------------------- ",JSON.stringify(context));
+						var keys = Object.keys(context);
+						var z = keys.lenght;
+						for (var i = 0; i<z;i++){
+							var key = keys[i];
+							var value = context[key];
+							if (this[key][value]!=undefined)
+								result = this.hasRole(role, this[key][value].roles);
+							if (result != undefined){
+								return false;
+							}
+						}
+					}
+					//console.log("------------------------SALE ----------");
+					if (role!=undefined && result===undefined)
+						result = this.hasRole(role, this.general.roles);
+					result = result===undefined?false:result;
+					//console.log("devuelve hasAccess", result);
+					return result;
+				};				
+				return principal;
+			}
+		});
+	</script>
+</dom-module>

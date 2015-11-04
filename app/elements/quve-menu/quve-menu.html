@@ -1,0 +1,68 @@
+<link rel="import" href="../quve-menu-item/quve-menu-item.html">
+
+<dom-module id="quve-menu">
+	<template>
+		<style>
+			paper-menu {
+		    	padding: 1px 0;
+			}
+		</style>
+		<paper-menu attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+			<template is="dom-repeat" items="{{items}}">
+				<quve-menu-item qv-role="{{item.role}}" item="{{item}}" data-route$="{{item.dataRoute}}"></quve-menu-item>
+			</template>
+		</paper-menu>		
+	</template>
+	<script>
+		Polymer({
+			is : "quve-menu",
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties: {
+			  items: {
+			    type: Array,
+			    notify: true
+			  },
+			  context : {
+			  	type: Object,
+			  	notify: true 
+			  }
+			},
+			ready : function(){
+				this.items = [{
+			    	text : "Productos",
+			    	href : "#/products",
+			    	dataRoute : "products",
+			    	icon : "icons:view-carousel",
+			    	role: "1.0"
+			    },{
+			    	text : "Monitor",
+			    	href : "#/monitor",
+			    	dataRoute : "monitor",
+			    	icon : "hardware:desktop-windows",
+			    	role: "13.0"
+			    },{
+			    	text : "Administración",
+			    	href : "#/admin",
+			    	dataRoute : "admin",
+			    	icon : "image:tune",
+			    	role: "14.0"
+			    },{
+			    	text : "Servicios",
+			    	href : "#/services",
+			    	dataRoute : "services",
+			    	icon : "hardware:developer-board",
+			    	role: "15.0"
+			    }]				
+			},			
+			onMenuSelect : function() {
+				document.querySelector('#mainArea').scrollToTop(true);
+				var drawerPanel = document.querySelector('#paperDrawerPanel');
+				if (drawerPanel.narrow) {
+					drawerPanel.closeDrawer();
+				}
+			}
+		});
+	</script>
+</dom-module>

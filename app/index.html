@@ -1,0 +1,195 @@
+<!doctype html>
+
+<html lang="">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="QUVE" />
+        <title>QUVE</title>
+        <!-- Place favicon.ico in the `app/` directory-->
+
+        <!-- Chrome for Android theme color -->
+        <meta name="theme-color" content="#303F9F">
+
+        <!-- Web Application Manifest -->
+        <link rel="manifest" href="manifest.json">
+
+        <!-- Tile color for Win8 -->
+        <meta name="msapplication-TileColor" content="#3372DF">
+
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="QUVE">
+        <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+        <!-- Add to homescreen for Safari on iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="QUVE">
+        <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+        <!-- Tile icon for Win8 (144x144) -->
+        <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+
+        <!-- Quve fonts -->
+        <link rel="stylesheet" href="styles/font-quve-gr.css">
+
+        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild-->
+
+        <!-- propiedades de configuracion -->
+        <script src="../../quve/configurations.js"></script>
+        <!-- Inicializa el contenedor de Behaviors -->
+        <script>var QuveBehaviors = {};</script>
+
+        <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+        <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+        <!-- endbuild -->
+
+        <!-- APP elements -->
+        <link rel="import" href="elements/elements.html">
+
+        <!-- QUVE Pages --> 
+        <link rel="import" href="pages/pages.html">
+
+        <!-- endreplace-->
+    </head>
+
+    <body unresolved class="fullbleed layout vertical">
+        <span id="browser-sync-binding"></span>
+    <quve-session></quve-session>
+    <template is="dom-bind" id="app">
+
+        <paper-drawer-panel id="paperDrawerPanel">
+            <!-- Drawer Scroll Header Panel -->
+            <paper-scroll-header-panel drawer fixed>
+
+                <!-- Drawer Toolbar -->        
+                <paper-toolbar id="drawerToolbar">
+                    <i on-click="goHome" style="margin:8px; font-size: 4em; cursor: pointer; cursor: hand;" class="icon-logo"></i>
+                    <span style="line-height: 1.1;" class="paper-font-caption">Plataforma<br>de Integración<br>Continua y Calidad</span>
+                </paper-toolbar>
+
+                <!-- Drawer Content app-theme-->
+                <quve-menu></quve-menu>
+            </paper-scroll-header-panel>
+
+            <!-- Main Area -->
+            <paper-scroll-header-panel id="mainArea" main condenses keep-condensed-header>
+
+                <!-- Main Toolbar -->
+                <paper-toolbar id="mainToolbar" class="tall">
+                    <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+                    <span class="flex"></span>
+
+                    <!-- Toolbar icons -->
+                    <quve-user-box></quve-user-box>		  
+                    <paper-icon-button icon="power-settings-new"></paper-icon-button>
+
+                    <!-- Application name -->
+                    <div class="middle middle-container center horizontal layout">
+                        <div class="app-name"></div>
+                    </div>
+
+                    <iron-pages class="bottom self-end" attr-for-selected="data-route" selected="{{route}}">
+
+                        <section data-route="products">
+                            <paper-input class="headerSearch" label="Filtrar por nombre de producto" id="search">
+                                <iron-icon icon="search" prefix></iron-icon>
+                                <paper-icon-button suffix onclick="clearInput()"
+                                                   icon="clear" alt="Borrar filtro" title="Borrar filtro" tabindex="0">
+                                </paper-icon-button>
+                            </paper-input>
+                        </section>
+
+                        <section data-route="product">
+                            <paper-tabs class="header-tabs" selected="{{selected}}">
+                                <paper-tab>MONITOR</paper-tab>
+                                <paper-tab>CORRIENTES</paper-tab>
+                                <paper-tab>COMPONENTES</paper-tab>
+                                <paper-tab>INFORMACIÓN</paper-tab>
+                                <paper-tab>OTROS PROCESOS</paper-tab>
+                            </paper-tabs>
+                        </section>
+
+                    </iron-pages>
+                </paper-toolbar>
+
+                <!-- Main Content -->
+                <div class="content">
+                    <!-- 
+                      <quve-pages pages="{{quvePages}}"></quve-pages>
+                    -->        
+                    <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+                        <section data-route="home">
+                            <paper-material elevation="1">
+                                <p class="paper-font-subhead">QUVE: Plataforma de Integración Continua y Calidad</p>
+                            </paper-material>
+                            <paper-material elevation="1">
+                                <p class="paper-font-body2">Otra carta</p>
+                            </paper-material>
+                        </section>
+
+                        <section data-route="products">
+                            <quve-page-products id="productsPage" qv-role="1.0"></quve-page-products>
+                        </section>
+
+                        <section data-route="product">
+                            <quve-page-product qv-role="1.1"></quve-page-product>
+                        </section>
+
+                        <template is="dom-repeat" items="{{quvePages}}">            
+                            <section data-route$="{{item.route}}">
+                                     <paper-material elevation="1">{{item.text}}</paper-material>
+                            </section>
+                        </template>
+
+                    </iron-pages>
+                </div>
+            </paper-scroll-header-panel>
+        </paper-drawer-panel>
+
+        <!-- Uncomment next block to enable Service Worker support (1/2) -->
+        <!--
+        <paper-toast id="caching-complete"
+                     duration="6000"
+                     text="Caching complete! This app will work offline.">
+        </paper-toast>
+    
+        <platinum-sw-register auto-register
+                              clients-claim
+                              skip-waiting
+                              on-service-worker-installed="displayInstalledToast">
+          <platinum-sw-cache default-cache-strategy="networkFirst"
+                             precache-file="precache.json">
+          </platinum-sw-cache>
+        </platinum-sw-register>
+        -->
+
+    </template>
+
+    <!-- build:js scripts/app.js --> 
+    <script src="scripts/app.js"></script>  
+    <script>
+
+            function toggle(selector) {
+                document.querySelector(selector).toggle();
+            }
+
+            document.querySelector('template[is=dom-bind]').isExpanded = function (opened) {
+                return String(opened);
+            };
+
+            function clearInput() {
+                document.getElementById('search').value = '';
+            }
+
+    </script>
+    <!-- endbuild-->
+</body>
+
+</html>

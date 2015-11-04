@@ -1,0 +1,41 @@
+<link rel="import" href="quve-api-behavior.html">
+
+<script>
+	QuveBehaviors.SecurityBehaviorImpl = {
+
+		properties : {
+			qvRole : {
+				type : String,
+				notify : true
+			}
+		},
+
+		ready : function() {
+			var those = this;
+			var session = document.querySelector("quve-session");
+			if (session != undefined)
+				session.addEventListener('session-getted', function(e) {
+					if (!those.hasAccess(e.detail))
+						those.style.display = 'none';
+				});
+			else
+				console.error("Es necesario definir <quve-session> para que este Behavior funcione");
+		},
+
+		hasAccess : function(principal) {
+			//console.log("-----qvRole",this.qvRole);
+			var app = document.querySelector("#app");
+			if (app===undefined){
+				console.error("Es necesario que exista al menos y solo un <template is='dom-bind' id='app'>");
+				return false;
+			}
+			return principal.hasAccess(this.qvRole, app.quveContext);
+		}
+	};
+
+	/** @quveBehavior */
+	QuveBehaviors.SecurityBehavior = [ 
+		QuveBehaviors.Api,
+		QuveBehaviors.SecurityBehaviorImpl
+	];
+</script>

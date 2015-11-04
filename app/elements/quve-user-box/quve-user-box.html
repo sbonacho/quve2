@@ -1,0 +1,29 @@
+<dom-module id="quve-user-box">
+	<template>
+		<style>
+			span {
+				font-size: 0.7em;
+			}
+		</style>		
+		<iron-icon icon="social:person"></iron-icon>
+		<span>{{name}}</span>		
+	</template> 
+	<script>
+		Polymer({
+			is : "quve-user-box",
+			properties : {
+				name : {
+					type : String,
+					value : "John Doe",
+					notify : true
+				}
+			},
+			ready : function(){
+				var those = this;
+				document.querySelector("quve-session").addEventListener('session-getted', function(e) {
+					those.name = e.detail.user.name;
+				});
+			}
+		});
+	</script>
+</dom-module>

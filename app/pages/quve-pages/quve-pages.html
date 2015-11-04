@@ -1,0 +1,62 @@
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<dom-module id="quve-pages">
+	<template>
+		<style>
+		</style>
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+            <section data-route="home">
+              <paper-material elevation="1">
+                <p class="paper-font-subhead">QUVE: Plataforma de Integración Continua y Calidad</p>
+              </paper-material>
+              <paper-material elevation="1">
+                <p class="paper-font-body2">Otra carta</p>
+              </paper-material>
+            </section>
+ 
+            <section data-route="products">
+           		<quve-page-products qv-role="1.0"></quve-page-products>
+            </section>
+
+			<template is="dom-repeat" items="{{pages}}">            
+			   	<section data-route$="{{item.route}}">
+			      	<paper-material elevation="1">{{item.text}}</paper-material>
+			    </section>
+			</template>
+            
+			<!-- 
+            <section data-route="user-info">
+              <paper-material elevation="1">
+                <h2 class="paper-font-display2">
+                User:<span>{{params.name}}</span>
+                </h2>
+                <div>This is <span>{{params.name}}</span>'s section</div>
+              </paper-material>
+            </section>
+ 			-->
+ 			
+          </iron-pages>		
+	</template>
+	
+	<script>
+		Polymer({
+			is : "quve-pages",
+			properties : {
+				route : {
+					type: String,
+					notify: true,
+					value: "monitor",
+					observer: '_routeChanged'
+				},
+				pages : {
+					type: Array,
+					notify: true
+				}
+			},
+			_routeChanged : function (newRoute, oldRoute){
+				console.log("new",newRoute,"old",oldRoute);
+			}
+		});
+	</script>
+</dom-module>

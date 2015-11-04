@@ -1,0 +1,77 @@
+<dom-module id="quve-page-product">
+	<template>
+		<style>
+		    .list {
+		      width: 100%;
+		    }
+		    
+		    iron-icon {
+		    	opacity: 0.54;
+		    	--iron-icon-height: 32px;
+		    	--iron-icon-width: 32px;
+		    }
+		    
+			a {
+				text-decoration: none;
+				color: var(--menu-link-color);
+			}
+			
+			a:hover paper-icon-item {
+				background-color: var(--secundary-background-color);
+			}
+			
+			a:hover iron-icon {
+				opacity: 1;
+			}		    
+		</style>
+		<iron-ajax id="ajax"
+            headers='{"X-Requested-With": "XMLHttpRequest"}'
+            handleAs='json'
+            method='GET'
+            on-response='loadProduct'> 
+		</iron-ajax>
+		<div class="list" role="list">
+			<template is="dom-repeat" items="{{products}}">
+				<a href="{{link(item.id)}}">
+					<paper-icon-item>
+						<iron-icon icon="image:view-comfy" item-icon></iron-icon>					
+						<paper-item-body two-line>
+							<div>{{item.name}}</div>
+							<div secondary>{{item.description}}</div>
+						</paper-item-body>
+						<iron-icon icon="icons:arrow-forward"></iron-icon>
+					</paper-icon-item>	
+				</a>		
+			</template>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-page-product",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				products : {
+					type: Object,
+					notify : true
+				}
+			},
+			link : function(id){
+				return "#/products/"+id;
+			},
+			load : function(){
+				if (this.products===undefined){
+					console.log("loading product !!");
+					this.$.ajax.params = document.querySelector('quve-session').params; 
+					this.$.ajax.url = this.getUrl("products");
+					this.$.ajax.generateRequest();
+				} 
+			},
+			loadProduct : function(e){
+				this.products = e.detail.response;
+				console.log(this.products.length,"products recieved!!");				
+			}
+		});
+	</script>
+</dom-module>

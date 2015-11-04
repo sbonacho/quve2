@@ -1,0 +1,60 @@
+<!-- QUVE pages : Only one hook in app for pages!! -->
+<!--  link rel="import" href="quve-pages/quve-pages.html"-->
+<link rel="import" href="quve-session/quve-session.html">
+<link rel="import" href="quve-page-products/quve-page-products.html">
+<link rel="import" href="quve-page-product/quve-page-product.html">
+
+<script src="../bower_components/page/page.js"></script>
+<script>
+	window.addEventListener('WebComponentsReady', function() {
+	
+		var appName = document.querySelector('.app-name');
+		
+		page('#/', function() {
+			appName.innerHTML = "Plataforma de Integración Continua y Calidad";
+			app.route = 'home';
+		});
+		
+		page('#/products', function() {
+			appName.innerHTML = "Catálogo de Productos";
+			app.route = 'products';
+			productsPage.load();
+			var filter = function(e) {
+				productsPage.filter(e.target.value);
+			};
+			search.addEventListener('keyup', filter);
+			search.addEventListener('blur', filter);			
+		});
+		
+		page('#/products/:id', function(ctx) {
+			app.route = 'product';
+			app.quveContext.products = ctx.id;			
+			document.querySelector("quve-page-product").load();
+		});
+
+		page('#/monitor', function() {
+			appName.innerHTML = "Monitor de Ejecuciones";		
+			app.route = 'monitor';
+		});
+
+		page('#/users/:name', function(data) {
+			app.route = 'user-info';
+			app.params = data.params;
+		});
+
+		page('#/admin', function() {
+			app.route = 'admin';
+		});
+		
+		page('#/services', function() {
+			app.route = 'services';
+		});
+		
+		// add #! before urls
+		page({
+			hashbang : true
+		});
+
+		page.base(document.location.pathname);
+	});
+</script>

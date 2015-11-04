@@ -1,0 +1,92 @@
+<dom-module id="quve-page-products">
+	<template>
+		<style>
+		    .list {
+		      width: 100%;
+		    }
+		    
+		    iron-icon {
+		    	opacity: 0.54;
+		    	--iron-icon-height: 32px;
+		    	--iron-icon-width: 32px;
+		    }
+		    
+		    iron-icon.right {
+		    	opacity: 0.05;
+		    }
+		    
+			a {
+				text-decoration: none;
+				color: var(--menu-link-color);
+			}
+			
+			a:hover paper-icon-item {
+				background-color: var(--secundary-background-color);
+			}
+			
+			a:hover iron-icon {
+				opacity: 1;
+			}		    
+		</style>
+		<iron-ajax id="ajax"
+            headers='{"X-Requested-With": "XMLHttpRequest"}'
+            handleAs='json'
+            method='GET'
+            on-response='loadProducts'> 
+		</iron-ajax>
+		<div class="list" role="list">
+			<template is="dom-repeat" items="{{products}}">
+				<a href="{{link(item.id)}}">
+					<paper-icon-item>
+						<iron-icon icon="image:view-comfy" item-icon></iron-icon>					
+						<paper-item-body two-line>
+							<div>{{item.name}}</div>
+							<div secondary>{{item.description}}</div>
+						</paper-item-body>
+						<iron-icon class="right" icon="icons:arrow-forward"></iron-icon>
+					</paper-icon-item>	
+				</a>		
+			</template>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-page-products",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				productsCache : {
+					type: Object
+				},			
+				products : {
+					type: Object,
+					notify : true
+				}
+			},
+			link : function(id){
+				return "#/products/"+id;
+			},
+			load : function(){
+				if (this.products===undefined){
+					console.log("loading products !!");
+					this.$.ajax.params = document.querySelector('quve-session').params; 
+					this.$.ajax.url = this.getUrl("products");
+					this.$.ajax.generateRequest();
+				} 
+			},
+			loadProducts : function(e){
+				this.productsCache = e.detail.response;
+				this.products = this.productsCache;
+				console.log(this.productsCache.length,"products recieved!!");				
+			},
+			filter : function(search){
+				this.products = this.productsCache.filter(function (item){
+					if (!search) return true;
+					if (!item) return false;
+					return (item.name && ~item.name.toLowerCase().indexOf(search.toLowerCase()));
+				});
+			}
+		});
+	</script>
+</dom-module>
