@@ -1,0 +1,95 @@
+<dom-module id="quve-page">
+	<template>
+		<style>
+		
+			:host{
+			    --drawer-toolbar-border-color: 1px solid rgba(0, 0, 0, 0.22);
+			}
+			
+			paper-scroll-header-panel {
+				height: 100%;
+			}
+
+			:host .middle-container  {
+			  height: 100%;
+			  margin: 0 0 50px 48px;
+			}
+			
+			:host .bottom {
+			  background: var(--default-primary-color);
+			  margin-left: 0px;
+			  width: 100%;
+			}
+			
+            @media (max-width: 800px) {
+				:host .bottom {
+				  background: var(--default-primary-color);
+				}
+				:host .middle-container  {
+				  margin: 0 0 40px 48px;
+				}								
+            }
+		</style>
+         <!-- Main Toolbar -->
+        <paper-scroll-header-panel id="scrollpanel" condenses keep-condensed-header>         
+	        <paper-toolbar class="tall">
+            	<paper-icon-button icon="menu" paper-drawer-toggle on-click="workAround"></paper-icon-button>	        
+	            <paper-icon-button class="back" id="backButton" icon="arrow-back" title="{{titleback}}" on-click="back"></paper-icon-button>
+	            <span class="flex"></span>
+	
+	            <!-- Toolbar icons -->
+	            <quve-user-box></quve-user-box>		  
+	            <paper-icon-button icon="power-settings-new"></paper-icon-button>
+	
+				<div class="middle middle-container">
+	               	<quve-header title="{{title}}" subtitle="{{subtitle}}"></quve-header>
+				</div>
+	
+	            <div class="bottom self-end">
+	            	<content select="[quvetools]"></content>
+	            </div>
+	        </paper-toolbar>
+			
+			<div>
+				<content></content>
+			</div>
+		</paper-scroll-header-panel>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-page",
+			properties : {
+				title : {
+					type: String,
+					notify: true
+				},
+				subtitle : {
+					type: String,
+					notify: true
+				},
+				titleback : {
+					type: String,
+					notify: true
+				},
+				hasBack :{
+					type: Boolean,
+					value: false
+				}
+			},
+			scrollToTop : function(smooth){						 
+				this.$.scrollpanel.scrollToTop(smooth);		
+			},
+			back : function(){
+				this.fire('goback', this);
+			},
+			ready : function(){
+				if (!this.hasBack)
+					this.$.backButton.style.display="none";
+			},
+			//Por el hecho de estar dentro del page el toggle no se lanza automáticamente
+			workAround : function(){
+				document.querySelector("#paperDrawerPanel").togglePanel();			
+			}
+		});
+	</script>
+</dom-module>

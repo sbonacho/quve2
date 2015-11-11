@@ -42,8 +42,9 @@
 
         <!-- propiedades de configuracion -->
         <script src="../../quve/configurations.js"></script>
-        <!-- Inicializa el contenedor de Behaviors -->
-        <script>var QuveBehaviors = {};</script>
+        
+        <!-- Inicializa QUVE API -->
+        <script src="scripts/quve-api.js"></script>
 
         <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
@@ -78,79 +79,34 @@
             </paper-scroll-header-panel>
 
             <!-- Main Area -->
-            <paper-scroll-header-panel id="mainArea" main condenses keep-condensed-header>
+            <iron-pages main attr-for-selected="data-route" selected="{{route}}">
+                <section data-route="home">
+                    <paper-material elevation="1">
+                        <p class="paper-font-subhead">QUVE: Plataforma de Integración Continua y Calidad</p>
+                    </paper-material>
+                    <paper-material elevation="1">
+                        <p class="paper-font-body2">Otra carta</p>
+                    </paper-material>
+                </section>
 
-                <!-- Main Toolbar -->
-                <paper-toolbar id="mainToolbar" class="tall">
-                    <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-                    <span class="flex"></span>
+                <section data-route="products">
+                    <quve-page-products route={{route}} qv-role="1.0"></quve-page-products>
+                </section>
 
-                    <!-- Toolbar icons -->
-                    <quve-user-box></quve-user-box>		  
-                    <paper-icon-button icon="power-settings-new"></paper-icon-button>
+                <section data-route="product">
+                    <quve-page-product id="productPage" route={{route}} qv-role="1.1"></quve-page-product>
+                </section>
+                
+                <section data-route="stream">
+                    <quve-page-stream id="streamPage" route={{route}} qv-role="1.1"></quve-page-stream>
+                </section>
+                
+                <section data-route="component">
+                    <quve-page-component id="componentPage" route={{route}} qv-role="1.1"></quve-page-component>
+                </section>
 
-                    <!-- Application name -->
-                    <div class="middle middle-container center horizontal layout">
-                        <div class="app-name"></div>
-                    </div>
+            </iron-pages> 
 
-                    <iron-pages class="bottom self-end" attr-for-selected="data-route" selected="{{route}}">
-
-                        <section data-route="products">
-                            <paper-input class="headerSearch" label="Filtrar por nombre de producto" id="search">
-                                <iron-icon icon="search" prefix></iron-icon>
-                                <paper-icon-button suffix onclick="clearInput()"
-                                                   icon="clear" alt="Borrar filtro" title="Borrar filtro" tabindex="0">
-                                </paper-icon-button>
-                            </paper-input>
-                        </section>
-
-                        <section data-route="product">
-                            <paper-tabs class="header-tabs" selected="{{selected}}">
-                                <paper-tab>MONITOR</paper-tab>
-                                <paper-tab>CORRIENTES</paper-tab>
-                                <paper-tab>COMPONENTES</paper-tab>
-                                <paper-tab>INFORMACIÓN</paper-tab>
-                                <paper-tab>OTROS PROCESOS</paper-tab>
-                            </paper-tabs>
-                        </section>
-
-                    </iron-pages>
-                </paper-toolbar>
-
-                <!-- Main Content -->
-                <div class="content">
-                    <!-- 
-                      <quve-pages pages="{{quvePages}}"></quve-pages>
-                    -->        
-                    <iron-pages attr-for-selected="data-route" selected="{{route}}">
-
-                        <section data-route="home">
-                            <paper-material elevation="1">
-                                <p class="paper-font-subhead">QUVE: Plataforma de Integración Continua y Calidad</p>
-                            </paper-material>
-                            <paper-material elevation="1">
-                                <p class="paper-font-body2">Otra carta</p>
-                            </paper-material>
-                        </section>
-
-                        <section data-route="products">
-                            <quve-page-products id="productsPage" qv-role="1.0"></quve-page-products>
-                        </section>
-
-                        <section data-route="product">
-                            <quve-page-product qv-role="1.1"></quve-page-product>
-                        </section>
-
-                        <template is="dom-repeat" items="{{quvePages}}">            
-                            <section data-route$="{{item.route}}">
-                                     <paper-material elevation="1">{{item.text}}</paper-material>
-                            </section>
-                        </template>
-
-                    </iron-pages>
-                </div>
-            </paper-scroll-header-panel>
         </paper-drawer-panel>
 
         <!-- Uncomment next block to enable Service Worker support (1/2) -->
@@ -160,16 +116,15 @@
                      text="Caching complete! This app will work offline.">
         </paper-toast>
     
-        <platinum-sw-register auto-register
+	<platinum-sw-register auto-register
                               clients-claim
                               skip-waiting
                               on-service-worker-installed="displayInstalledToast">
-          <platinum-sw-cache default-cache-strategy="networkFirst"
-                             precache-file="precache.json">
-          </platinum-sw-cache>
+			<platinum-sw-cache default-cache-strategy="networkFirst"
+	                             precache-file="precache.json">
+			</platinum-sw-cache>
         </platinum-sw-register>
         -->
-
     </template>
 
     <!-- build:js scripts/app.js --> 
@@ -183,10 +138,6 @@
             document.querySelector('template[is=dom-bind]').isExpanded = function (opened) {
                 return String(opened);
             };
-
-            function clearInput() {
-                document.getElementById('search').value = '';
-            }
 
     </script>
     <!-- endbuild-->

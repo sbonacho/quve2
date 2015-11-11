@@ -1,0 +1,34 @@
+<!--
+  DEPENDE DE configuration.js
+  var quveConfig = {"quve.frontal.api":"/icqaportal","quve.frontal.intervalupdate":"10000"};
+  
+  Objeto global donde se almacenan todas las URL que relacionan a QUVE con el API.
+  En este objeto se carga el UUID del quveToken 
+ -->
+
+<script>
+	QuveBehaviors.Api = {
+	
+		properties : {
+			urls : {
+				type: Object
+			}
+		},
+		ready : function(){		
+			this.urls = {
+				session : {
+					url : "data/session.json"
+				},
+				products : {
+					url : "data/products.json"
+				},
+				product : {
+					url : "data/product.json"
+				}								
+			}
+		},
+		getUrl : function (name){
+			return this.urls[name].url;
+		}
+	};
+</script>

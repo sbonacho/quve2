@@ -1,0 +1,43 @@
+<dom-module id="quve-product-info">
+	<template>
+		<style>
+			:host paper-material {
+			    border-radius: 2px;
+			    padding: 16px 16px 0 16px;
+			    width: calc(97.33% - 32px);
+			    margin: 16px auto;
+			    background: white;
+			}
+		</style>
+		<paper-material elevation="1">
+			<form is="iron-form" id="infoForm" method="post" action="/">
+				<paper-input name="name" label="NOMBRE" value="{{product.name::input}}" required disabled></paper-input>
+				<paper-input name="description" label="DESCRIPCIÓN" value="{{product.description::input}}" disabled></paper-input>
+				<paper-input name="configurationManagerName" label="GESTOR DE CONFIGURACIÓN" value="{{product.configurationManagerName::input}}" disabled></paper-input>
+				<!--  TODO: Hacer componente lista buscable y desplegable de projectarea y permitir buscar project Area del combo para la edicción -->
+				<paper-input name="projectArea" label="ÁREA DE PROYECTO" value="{{product.projectArea.name::input}}" disabled></paper-input>
+			</form>
+		</paper-material>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-product-info",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				product : {
+					type: Object,
+					notify : true
+				},
+				info : {
+					type: String,
+					computed : "toString(product)"
+				}
+			},
+			toString : function(product){
+				return JSON.stringify(product);
+			}
+		});
+	</script>
+</dom-module>

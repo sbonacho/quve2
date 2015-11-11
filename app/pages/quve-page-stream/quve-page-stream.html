@@ -90,7 +90,7 @@
 			},
 			load : function(){
 				this.$.ajax.params = document.querySelector('quve-session').params; 
-				this.$.ajax.url = this.getUrl("product",this.key);
+				this.$.ajax.url = this.getUrl("products")+"/"+this.key;
 				this.$.ajax.generateRequest();
 			},		
 			loadProduct : function(e){

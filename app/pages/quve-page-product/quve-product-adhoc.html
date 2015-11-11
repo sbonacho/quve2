@@ -1,0 +1,23 @@
+<dom-module id="quve-product-streams">
+	<template>
+		<style>
+		</style>
+		<template is="dom-repeat" items="{{product.streams}}">
+			<div>{{item.name}}</div>
+		</template>		
+	</template>
+	<script>
+		Polymer({
+			is : "quve-product-streams",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				product : {
+					type: Object,
+					notify : true
+				}
+			}
+		});
+	</script>
+</dom-module>

@@ -1,0 +1,29 @@
+<dom-module id="quve-product-streams">
+	<template>
+		<style>
+		</style>
+		<quve-list list="{{product.streams}}" operator="{{getOperator(product)}}"></quve-list>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-product-streams",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				product : {
+					type: Object,
+					notify : true
+				}
+			},
+			getOperator : function (product){
+				var rest = "#/products/"+product.id+"/streams/";
+				return {
+					link : function(id){
+						return rest+id;
+					}	
+				}			
+			} 	
+		});
+	</script>
+</dom-module>

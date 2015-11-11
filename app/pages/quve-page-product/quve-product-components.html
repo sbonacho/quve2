@@ -1,0 +1,32 @@
+<dom-module id="quve-product-components">
+	<template>
+		<style>
+		</style>
+		<template is="dom-repeat" items="{{product.streams}}" as="stream">
+			<div>{{stream.name}}</div>
+			<quve-list list="{{stream.components}}" operator="{{getOperator(product,stream)}}"></quve-list>			
+		</template>		
+	</template>
+	<script>
+		Polymer({
+			is : "quve-product-components",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				product : {
+					type: Object,
+					notify : true
+				}
+			},
+			getOperator : function (product, stream){
+				var rest = "#/products/"+product.id+"/streams/"+stream.id+"/components/";
+				return {
+					link : function(id){
+						return rest+id;
+					}	
+				}			
+			}			
+		});
+	</script>
+</dom-module>

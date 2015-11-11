@@ -1,32 +1,19 @@
 <dom-module id="quve-page-products">
 	<template>
 		<style>
-		    .list {
-		      width: 100%;
-		    }
-		    
-		    iron-icon {
-		    	opacity: 0.54;
-		    	--iron-icon-height: 32px;
-		    	--iron-icon-width: 32px;
-		    }
-		    
-		    iron-icon.right {
-		    	opacity: 0.05;
-		    }
-		    
-			a {
-				text-decoration: none;
-				color: var(--menu-link-color);
+			paper-input {
+			  	--paper-input-container-input-color: white;
+				width: 400px;
+				margin: 0 0 0 48px;
 			}
 			
-			a:hover paper-icon-item {
-				background-color: var(--secundary-background-color);
+			:host .size{
+				margin-bottom: 5px;
+				width: 448px;
+				text-align: right;
+				font-size: 10px;
 			}
 			
-			a:hover iron-icon {
-				opacity: 1;
-			}		    
 		</style>
 		<iron-ajax id="ajax"
             headers='{"X-Requested-With": "XMLHttpRequest"}'
@@ -34,20 +21,24 @@
             method='GET'
             on-response='loadProducts'> 
 		</iron-ajax>
-		<div class="list" role="list">
-			<template is="dom-repeat" items="{{products}}">
-				<a href="{{link(item.id)}}">
-					<paper-icon-item>
-						<iron-icon icon="image:view-comfy" item-icon></iron-icon>					
-						<paper-item-body two-line>
-							<div>{{item.name}}</div>
-							<div secondary>{{item.description}}</div>
-						</paper-item-body>
-						<iron-icon class="right" icon="icons:arrow-forward"></iron-icon>
-					</paper-icon-item>	
-				</a>		
-			</template>
-		</div>
+         <!-- Main Toolbar -->
+        <quve-page id="page" title="Catálogo de Productos" subtitle="Incluidos en Integración Continua de ECI">
+        	<div quvetools>
+		        <paper-input label="Filtrar por nombre de producto" id="search">
+		            <iron-icon icon="search" prefix></iron-icon>
+		            <paper-icon-button
+		            	id="clear" 
+		            	suffix 
+		            	icon="clear" 
+		            	alt="Borrar filtro" 
+		            	title="Borrar filtro" 
+		            	tabindex="0">
+		            </paper-icon-button>
+		        </paper-input>
+		        <div class="size">{{size}}</div>	
+        	</div>
+			<quve-list list="{{products}}" operator="{{operator}}"></quve-list>        	
+        </quve-page>
 	</template>
 	<script>
 		Polymer({
@@ -55,6 +46,11 @@
 			behaviors: [
 				QuveBehaviors.SecurityBehavior
 			],
+			listeners: {
+		        'clear.tap': 'clearInput',
+		        'search.keyup' : 'filter',
+		        'search.blur' : 'filter'
+      		},
 			properties : {
 				productsCache : {
 					type: Object
@@ -62,25 +58,49 @@
 				products : {
 					type: Object,
 					notify : true
+				},
+				route : {
+					type: String,
+					observer : "load"
+				},
+				size : {
+					type: String,
+					computed: "getSize(products)"
+				},
+				operator : {
+					type: Object,
+					value: {
+						link : function(id){
+							return "#/products/"+id;
+						}	
+					}
+				}				
+			},
+			getSize : function(products){
+				return products.length+" producto(s)"
+			},
+			clearInput : function(){
+                this.$.search.value = '';
+                this.$.search.fire('blur', this);
+			},
+			load : function(route){
+				if ( route==="products"){
+					this.$.page.scrollToTop(true);
+					if (this.products===undefined){
+						console.log("loading products !!");
+						this.$.ajax.params = document.querySelector('quve-session').params; 
+						this.$.ajax.url = this.getUrl("products");
+						this.$.ajax.generateRequest();
+					}
 				}
-			},
-			link : function(id){
-				return "#/products/"+id;
-			},
-			load : function(){
-				if (this.products===undefined){
-					console.log("loading products !!");
-					this.$.ajax.params = document.querySelector('quve-session').params; 
-					this.$.ajax.url = this.getUrl("products");
-					this.$.ajax.generateRequest();
-				} 
 			},
 			loadProducts : function(e){
 				this.productsCache = e.detail.response;
 				this.products = this.productsCache;
 				console.log(this.productsCache.length,"products recieved!!");				
 			},
-			filter : function(search){
+			filter : function(e){
+				var search = e.target.value;
 				this.products = this.productsCache.filter(function (item){
 					if (!search) return true;
 					if (!item) return false;
