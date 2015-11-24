@@ -1,0 +1,75 @@
+<dom-module id="quve-item">
+	<template>
+		<style>
+		   quve-icon {
+		   	opacity: 0.54;
+		   	--iron-icon-height: 32px;
+		   	--iron-icon-width: 32px;
+		   }
+		   
+		   quve-icon.right {
+		   	opacity: 0.05;
+		   }
+			   
+			:host a {
+				text-decoration: none;
+				color: var(--menu-link-color);
+			}
+			
+			:host a:hover paper-icon-item {
+				background-color: var(--secundary-background-color);
+			}
+			
+			:host a:hover quve-icon {
+				opacity: 1;
+			}
+			
+		</style>
+		<a href="{{link}}">
+			<paper-icon-item>
+				<quve-icon translate="{{translate}}" item-icon></quve-icon>					
+				<paper-item-body two-line>
+					<div>{{name}}</div>
+					<div secondary>{{description}}</div>
+				</paper-item-body>
+				<content></content>
+				<quve-icon class="right" icon="icons:arrow-forward"></quve-icon>
+			</paper-icon-item>	
+		</a>
+    </template>		
+	<script>
+		Polymer({
+			is : "quve-item",			
+			properties : {
+				name : {
+					type: String,
+					notify : true
+				},
+				description : {
+					type: String,
+					notify : true
+				},
+				translate : {
+					type: String,
+					notify : true
+				},
+				key : {
+					type: String,
+					notify : true
+				},
+				operator : {
+					type: Object,
+					notify: true
+				},
+				link : {
+					type: String,
+					notify: true,
+					computed: "doLink(key, operator)"
+				}
+			},
+			doLink : function(key, operator){
+				return operator.link(key);
+			}
+		});
+	</script>
+</dom-module>

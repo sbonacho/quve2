@@ -1,19 +1,12 @@
 <dom-module id="quve-session">
 	<template>
-		<iron-ajax id="ajax"
-			auto
-            headers='{"X-Requested-With": "XMLHttpRequest"}'
-            handleAs='json'
-            method='GET'
+		<quve-api-ajax id="ajax"
             on-response='loadSession'> 
-		</iron-ajax>
+		</quve-api-ajax>
 	</template>
 	<script>
 		Polymer({
 			is : "quve-session",
-			behaviors : [
-				QuveBehaviors.Api
-			],
 			properties : {
 				principal : {
 					type: Object
@@ -28,7 +21,7 @@
 				}
 			},			
 			ready : function(){
-				this.$.ajax.url = this.getUrl("session");
+				this.$.ajax.doGet("session");
 			},
 			loadSession : function(e){
 				this.principal = this.decorate(e.detail.response.principal);

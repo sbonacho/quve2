@@ -1,0 +1,37 @@
+<dom-module id="quve-stream-components">
+	<template>
+		<style>
+		</style>
+		<quve-list items="{{stream.components}}">
+			<div noresult>No existe ningún componente para esta corriente</div>
+			<template is="dom-repeat" items="{{stream.components}}">
+				<quve-item-simple item={{item}} operator="{{getOperator(product,stream)}}"></quve-item-simple>
+			</template>				
+		</quve-list>			
+	</template>
+	<script>
+		Polymer({
+			is : "quve-stream-components",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				product : {
+					type: Object,
+					notify : true
+				},
+				stream : {
+					type: Object,
+					notify : true				
+				}
+			},
+			getOperator : function (product, stream){
+				return {
+					link : function(id){
+						return String.format("#/products/{0}/streams/{1}/components/{2}",product.id,stream.id,id);
+					}	
+				}			
+			}			
+		});
+	</script>
+</dom-module>

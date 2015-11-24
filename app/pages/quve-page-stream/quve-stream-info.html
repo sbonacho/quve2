@@ -1,0 +1,44 @@
+<!-- TODO: EN ESTA PÁGINA DEBERÁ APARECER LAS ESTADISTICAS DE LA CORRIENTE -->
+<dom-module id="quve-stream-info">
+	<template>
+		<style>
+			:host paper-material {
+			    border-radius: 2px;
+			    padding: 16px 16px 0 16px;
+			    width: calc(97.33% - 32px);
+			    margin: 16px auto;
+			    background: white;
+			}
+		</style>
+		<paper-material elevation="1">
+			<form is="iron-form" id="infoForm" method="post" action="/">
+				<!-- TODO: Hacer que esto cuando sea editable sea un combo con todos los tipos -->
+				<paper-input name="tipo" label="TIPO DE CORRIENTE" value="{{tipo::input}}" required disabled></paper-input>		
+				<paper-input name="name" label="NOMBRE" value="{{stream.name::input}}" required disabled></paper-input>
+				<paper-input name="description" label="DESCRIPCIÓN" value="{{stream.description::input}}" disabled></paper-input>
+			</form>
+		</paper-material>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-stream-info",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				stream : {
+					type: Object,
+					notify : true
+				},
+				tipo : {
+					type: String,
+					computed : "getTipo(stream)"
+				}
+			},
+			getTipo : function (stream){
+				var trad = {INT: "Integración", REL: "Release", MANT: "Mantenimiento", DES: "Desarrollo"};
+				return trad[stream.type];
+			}
+		});
+	</script>
+</dom-module>

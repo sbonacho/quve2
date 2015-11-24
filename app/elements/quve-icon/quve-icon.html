@@ -1,0 +1,55 @@
+<dom-module id="quve-icon">
+	<template>
+		<style>
+		</style>
+		<iron-icon id="ironicon" icon="{{icon}}"></iron-icon>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-icon",
+			translations : {
+				"default" : {
+					icon : "image:view-comfy",
+					text : ""				
+				},
+				"INT" : {
+					icon : "icons:build",
+					text : "INTEGRACIÓN"
+				},
+				"DEV" : {
+					icon : "icons:bug-report",
+					text : "DESARROLLO"
+				},
+				"REL" : {
+					icon : "icons:flight-takeoff",
+					text : "RELEASE"
+				},				
+				"MANT" : {
+					icon : "icons:receipt",
+					text : "MANTENIMIENTO"
+				}			
+			},
+			properties : {
+				icon : {
+					type: String,
+					notify: true				
+				},
+				translate: {
+					type: String,
+					notify: true
+				}
+			},
+			ready : function(){
+				var item;
+				if (!this.icon)
+					item = this.translations["default"];
+				if (this.translate)
+					item = this.translations[this.translate];
+				if (item){
+					this.$.ironicon.icon = item.icon;
+					this.$.ironicon.title = item.text;
+				}					
+			}
+		});
+	</script>
+</dom-module>

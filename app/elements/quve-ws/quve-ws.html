@@ -1,0 +1,53 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="quve-ws">
+	<style>
+		:host {
+			display: none;
+		}
+	</style>
+	<template>
+
+	</template>
+</dom-module>
+<script>
+	(function() {
+        Polymer({
+            is: "quve-ws",
+            socket: null,
+            properties: {
+                protocol: {
+                    type: String
+                },
+                url: {
+                    type: String
+                }
+            },
+            ready: function () {
+                this.socket = new WebSocket(this.url, this.protocol);
+                this.socket.onerror = this.onError.bind(this);
+                this.socket.onopen = this.onOpen.bind(this);
+                this.socket.onmessage = this.onMessage.bind(this);
+            },
+            onError: function (error) {
+            console.log("error", error);
+                this.fire('onerror', error);
+            },
+            onOpen: function (event) {
+            console.log("open", event);
+                this.fire('onopen');
+            },
+            onMessage: function (event) {
+            console.log("message", event);
+                this.fire('onmessage', event.data);
+            },
+            send: function (message) {
+            console.log("send", message);
+                this.socket.send(message);
+            },
+            close: function () {
+                this.socket.close();
+            }
+        })
+	})();
+</script>

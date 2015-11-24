@@ -1,0 +1,62 @@
+{
+		"key": "b5c28ad1-b9fd-435e-98a5-424100b91af9",
+		"id": "b5c28ad1-b9fd-435e-98a5-424100b91af9",
+		"name": "GIS - BASICOS - DESARROLLO",
+		"description": "Corriente dada de alta a partir de los jobs de Jenkins de producción",
+		"targetKey": null,
+		"type": "INT",
+		"components": [{
+			"key": "2c5bfa32-a44f-439e-96a1-da7bafe24b9c",
+			"id": "2c5bfa32-a44f-439e-96a1-da7bafe24b9c",
+			"name": "CKA50001 - FTP Java ECI",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		},
+		{
+			"key": "39988a3a-b33d-41ae-a7d0-f1bde2a94a8a",
+			"id": "39988a3a-b33d-41ae-a7d0-f1bde2a94a8a",
+			"name": "CKA50005 - InternetConector",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		},
+		{
+			"key": "d1cec5bd-dd59-44f1-a5af-4a296defe547",
+			"id": "d1cec5bd-dd59-44f1-a5af-4a296defe547",
+			"name": "CKA20016 - Acceso IMS",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		},
+		{
+			"key": "78942574-aa6b-49f5-afa6-de2d674d5dcd",
+			"id": "78942574-aa6b-49f5-afa6-de2d674d5dcd",
+			"name": "CKA20002 - Jade",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		},
+		{
+			"key": "62aeb864-b667-46e5-b343-7aa268a7058f",
+			"id": "62aeb864-b667-46e5-b343-7aa268a7058f",
+			"name": "CKA10004 - DirectorioLDAP",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		},
+		{
+			"key": "c779cbc9-0236-4aea-9f07-d069d301dee5",
+			"id": "c779cbc9-0236-4aea-9f07-d069d301dee5",
+			"name": "CKA50014 - FTP",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		},
+		{
+			"key": "13d96058-dde4-4912-80d8-e48215bae154",
+			"id": "13d96058-dde4-4912-80d8-e48215bae154",
+			"name": "CKA10007 - Blindaje Web",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		},
+		{
+			"key": "06bc7867-60d8-4cb6-bfd9-93855656648e",
+			"id": "06bc7867-60d8-4cb6-bfd9-93855656648e",
+			"name": "CKA20009 - AccesoCICS",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		},
+		{
+			"key": "3ae8452c-334b-420a-84f5-12d6685ccf7e",
+			"id": "3ae8452c-334b-420a-84f5-12d6685ccf7e",
+			"name": "CKA50004 - Acceso MQ",
+			"description": "Componente dado de alta a partir de los jobs de Jenkins de producción."
+		}]
+	}

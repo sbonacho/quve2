@@ -2,7 +2,13 @@
 	<template>
 		<style>
 		</style>
-		<quve-list list="{{product.streams}}" operator="{{getOperator(product)}}"></quve-list>
+		<quve-list items="{{product.streams}}">
+			<div noresult>No existe ninguna corriente para este producto</div>
+			<template is="dom-repeat" items="{{product.streams}}">
+				<quve-item key={{item.id}} name={{item.name}} description={{item.description}} translate={{item.type}} operator="{{getOperator(product)}}">
+				</quve-item>
+			</template>		
+		</quve-list>
 	</template>
 	<script>
 		Polymer({

@@ -1,0 +1,37 @@
+<script>
+    QuveBehaviors.TabBehaviorImpl = {
+    	listeners : {
+    		"pages.iron-select" : "doSelect"
+    	},
+        properties: {
+			selected : {
+				type: Number,
+				observer : "changeTab",
+				value : 0
+			}        
+        },
+		changeTab : function(n, o){
+			if (o>n){
+				this.$.pages.entryAnimation = "slide-from-left-animation";
+				this.$.pages.exitAnimation = "slide-right-animation";
+			}else{
+				this.$.pages.entryAnimation = "slide-from-right-animation";
+				this.$.pages.exitAnimation = "slide-left-animation";				
+			}
+			this.$.pages.selected = n;				
+		}, 
+		doSelect : function(e, detail){
+			this.select(detail.item);
+		},
+		select : function (element){
+			var element = Polymer.dom(element).firstElementChild;
+			if (element && element.selectedLoad)
+				element.selectedLoad();			
+		}
+    };
+
+    /** @quveBehavior */
+    QuveBehaviors.TabBehavior = [
+        QuveBehaviors.TabBehaviorImpl
+    ];
+</script>

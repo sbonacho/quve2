@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="quve-stomp">
+	<style>
+		:host {
+			display: none;
+		}
+	</style>
+	<template>
+
+	</template>
+</dom-module>
+<script src="../../bower_components/sockjs/dist/sockjs.js"></script>
+<script src="../../bower_components/stomp-websocket/lib/stomp.min.js"></script>
+<script>
+	(function() {
+        Polymer({
+            is: "quve-stomp",
+            sock : null,
+            stomClient : null,
+            properties: {
+                url: {
+                    type: String
+                }             
+            },
+            ready: function () {
+                this.sock = null;
+                this.openConnection();
+            },
+            connection_established: function () {
+                console.log('CONNECTION ESTABLISHED');
+            },
+            connection_closed: function (event) {
+                console.log('CONNECTION CLOSED', event);
+            },
+            message_received: function (message) {
+                console.log('RECEIVED:', message);
+            },
+            stompConnect : function(frame){
+            	console.log("----------- Connect: ", frame);
+            },
+            stompMessage : function(message){
+                console.log("----------- Message: ",arguments);
+            },
+            openConnection: function () {
+                this.sock = new SockJS(this.url);
+	            stompClient = Stomp.over(this.sock);
+	            console.log("creating stompClient");
+	            stompClient.connect({}, function(frame) {
+	                console.log('Connected: ', frame);
+	                stompClient.subscribe('/topic/greetings', function(greeting){
+	                    console.log(JSON.parse(greeting.body).content);
+	                });
+	            });
+	            this.stompClient = stompClient;
+            },
+            register_receiver: function (receiver) {
+                this.sock.onmessage = function(e) {
+                    receiver(e.data);
+                };
+            },
+            send: function (message) {
+            	this.stompClient.send("/app/hello", {}, JSON.stringify({ 'name': message }));
+            }            
+        })
+	})();
+</script>

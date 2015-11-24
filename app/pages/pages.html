@@ -2,42 +2,49 @@
 <!--  link rel="import" href="quve-pages/quve-pages.html"-->
 <link rel="import" href="quve-page-products/quve-page-products.html">
 <link rel="import" href="quve-page-product/quve-page-product.html">
+<link rel="import" href="quve-page-stream/quve-page-stream.html">
+<link rel="import" href="quve-page-component/quve-page-component.html">
+<link rel="import" href="quve-page-monitor/quve-page-monitor.html">
+<link rel="import" href="quve-page-processes/quve-page-processes.html">
 
 <script src="../bower_components/page/page.js"></script>
 <script>
 
 	window.addEventListener('WebComponentsReady', function() {
 		
-		page('#/', function() {
-			app.route = 'home';
+		// PÁGINA DE INICIO
+		page(document.location.pathname, function() {
+			app.route = 'products';
+			document.querySelector('quve-menu').route = app.route;
 		});
 		
 		page('#/products', function() {
 			app.route = 'products';
 		});
 		
-		page('#/products/:id', function(ctx) {
-			app.quveContext.products = ctx.params.id;
-			productPage.key = ctx.params.id;
-			app.route = 'product';			
+		page('#/products/:productId', function(ctx) {
+			app.quveContext.products = ctx.params.productId;
+			productPage.params = ctx.params;
+			app.route = 'product';
 		});
 		
-		page('#/products/:id/streams/:idStream', function(ctx) {
-			app.quveContext.products = ctx.params.id;
-			app.quveContext.streams = ctx.params.idStream;
-			streamPage.key = ctx.params.idStream;
+		page('#/products/:productId/streams/:streamId', function(ctx) {
+			app.quveContext.products = ctx.params.productId;
+			app.quveContext.streams = ctx.params.streamId;
+			streamPage.params = ctx.params;
 			app.route = 'stream';
 		});
 		
-		page('#/products/:id/streams/:idStream/components/:idComponent', function(ctx) {
-			app.quveContext.products = ctx.params.id;
-			app.quveContext.streams = ctx.params.idStream;
-			app.quveContext.components = ctx.params.idComponent;
-			componentPage.key = ctx.params.idComponent;
+		page('#/products/:productId/streams/:streamId/components/:componentId', function(ctx) {
+			app.quveContext.products = ctx.params.productId;
+			app.quveContext.streams = ctx.params.streamId;
+			app.quveContext.components = ctx.params.componentId;
+			componentPage.params = ctx.params;
 			app.route = 'component';
 		});
 
-		page('#/monitor', function() {
+		page('#/monitor', function(ctx) {
+			monitorPage.params = ctx.params;
 			app.route = 'monitor';
 		});
 

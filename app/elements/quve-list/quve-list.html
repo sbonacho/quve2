@@ -1,63 +1,41 @@
 <dom-module id="quve-list">
 	<template>
 		<style>
+			:host paper-material {
+			    border-radius: 2px;
+			    padding: 16px 16px 16px 16px;
+			    width: calc(97.33% - 32px);
+			    margin: 16px auto;
+			    background: white;
+			}
+		
 		   :host .list {
 		     width: 100%;
 		   }
-		   
-		   iron-icon {
-		   	opacity: 0.54;
-		   	--iron-icon-height: 32px;
-		   	--iron-icon-width: 32px;
-		   }
-		   
-		   iron-icon.right {
-		   	opacity: 0.05;
-		   }
-			   
-			:host a {
-				text-decoration: none;
-				color: var(--menu-link-color);
-			}
-			
-			:host a:hover paper-icon-item {
-				background-color: var(--secundary-background-color);
-			}
-			
-			:host a:hover iron-icon {
-				opacity: 1;
-			}
 			
 		</style>
-		<div class="list" role="list">
-			<template is="dom-repeat" items="{{list}}">
-				<a href="{{link(item.id)}}">
-					<paper-icon-item>
-						<iron-icon icon="image:view-comfy" item-icon></iron-icon>					
-						<paper-item-body two-line>
-							<div>{{item.name}}</div>
-							<div secondary>{{item.description}}</div>
-						</paper-item-body>
-						<iron-icon class="right" icon="icons:arrow-forward"></iron-icon>
-					</paper-icon-item>	
-				</a>
-			</template>
-		</div>				
+		<template is="dom-if" if="{{empty}}">
+			<paper-material elevation="1">
+				<content select="[noresult]"></content>
+			</paper-material>
+    	</template>		
+		<content id="items"></content>
 	</template>
 	<script>
 		Polymer({
-			is : "quve-list",			
+			is : "quve-list",
 			properties : {
-				list : {
-					type: Object,
-					notify : true
+				items : {
+					type: Array,
+					value: []
 				},
-				operator : {
-					type: Object
+				empty : {
+					type: Boolean,
+					computed : "isEmpty(items)"
 				}
-			},
-			link : function(id){
-				return this.operator.link(id);
+			},			
+			isEmpty : function(list){
+				return list.length===0;
 			}			
 		});
 	</script>

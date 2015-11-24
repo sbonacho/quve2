@@ -1,10 +1,23 @@
 <dom-module id="quve-product-components">
 	<template>
 		<style>
+			:host .header quve-icon {
+				margin-right: 20px;
+			}
 		</style>
 		<template is="dom-repeat" items="{{product.streams}}" as="stream">
-			<div>{{stream.name}}</div>
-			<quve-list list="{{stream.components}}" operator="{{getOperator(product,stream)}}"></quve-list>			
+			<quve-collapse>
+				<div class="header">
+					<quve-icon translate="{{stream.type}}"></quve-icon> {{stream.name}}
+				</div>
+				<div inside>
+					<quve-list items={{stream.components}}>
+						<template is="dom-repeat" items="{{stream.components}}">
+							<quve-item-simple item={{item}} operator="{{getOperator(product,stream)}}"></quve-item-simple>
+						</template>
+					</quve-list>
+				</div>
+			</quve-collapse>
 		</template>		
 	</template>
 	<script>
@@ -20,10 +33,9 @@
 				}
 			},
 			getOperator : function (product, stream){
-				var rest = "#/products/"+product.id+"/streams/"+stream.id+"/components/";
 				return {
 					link : function(id){
-						return rest+id;
+						return String.format("#/products/{0}/streams/{1}/components/{2}",product.id,stream.id,id);
 					}	
 				}			
 			}			

@@ -1,0 +1,70 @@
+<link rel="import" href="quve-monitor.html">
+
+<dom-module id="quve-page-monitor">
+	<template>
+		<style>
+			paper-input {
+			  	--paper-input-container-input-color: white;
+			  	--paper-input-container-color: #cecece;
+			  	--paper-input-container-focus-color: var(--accent-color-light);
+				width: 400px;
+				margin: 0 0 0 48px;
+			}
+			
+			:host .size{
+				margin-bottom: 2px;
+				width: 448px;
+				text-align: right;
+				font-size: 9px;
+				color: var(--accent-color-light);
+			}		
+		</style>
+		<quve-api-ajax id="ajax"
+            on-response='loadMonitor'> 
+		</quve-api-ajax>		
+        <quve-page id="page" title="Monitor de Trabajos" subtitle="listado de todos los trabajos lanzados en Integración Continua">
+        	<div quvetools>
+		        <paper-input label="Filtrar ejecuciones" id="search">
+		            <iron-icon icon="search" prefix></iron-icon>
+		            <paper-icon-button
+		            	id="clear" 
+		            	suffix 
+		            	icon="clear" 
+		            	alt="Borrar filtro" 
+		            	title="Borrar filtro" 
+		            	tabindex="0">
+		            </paper-icon-button>
+		        </paper-input>
+		        <div class="size">{{size}}</div>
+        	</div>
+			<quve-monitor executions={{executions}}></quve-monitor>        	
+        </quve-page>		
+	</template>
+	<script>
+		Polymer({
+			is : "quve-page-monitor",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				executions : {
+					type: Array,
+					notify: true
+				},
+				route : {
+					type: String,
+					observer : "routeLoad"
+				}
+			},
+			routeLoad : function(route){
+				if ( route==="monitor" ){
+					this.$.ajax.params = document.querySelector('quve-session').params; 
+					this.$.ajax.doGet("executions");				
+				} 
+			},
+			loadMonitor : function(e){
+				this.executions = e.detail.response;
+			}
+		});
+	</script>
+</dom-module>

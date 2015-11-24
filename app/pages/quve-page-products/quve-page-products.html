@@ -3,24 +3,24 @@
 		<style>
 			paper-input {
 			  	--paper-input-container-input-color: white;
+			  	--paper-input-container-color: #cecece;
+			  	--paper-input-container-focus-color: var(--accent-color-light);
 				width: 400px;
 				margin: 0 0 0 48px;
 			}
 			
 			:host .size{
-				margin-bottom: 5px;
+				margin-bottom: 2px;
 				width: 448px;
 				text-align: right;
-				font-size: 10px;
+				font-size: 9px;
+				color: var(--accent-color-light);
 			}
 			
 		</style>
-		<iron-ajax id="ajax"
-            headers='{"X-Requested-With": "XMLHttpRequest"}'
-            handleAs='json'
-            method='GET'
+		<quve-api-ajax id='ajax'
             on-response='loadProducts'> 
-		</iron-ajax>
+		</quve-api-ajax>
          <!-- Main Toolbar -->
         <quve-page id="page" title="Catálogo de Productos" subtitle="Incluidos en Integración Continua de ECI">
         	<div quvetools>
@@ -37,7 +37,11 @@
 		        </paper-input>
 		        <div class="size">{{size}}</div>	
         	</div>
-			<quve-list list="{{products}}" operator="{{operator}}"></quve-list>        	
+			<quve-list items="{{products}}">
+				<template is="dom-repeat" items="{{products}}">
+					<quve-item-simple item={{item}} operator="{{operator}}"></quve-item-simple>
+				</template>
+			</quve-list>        	
         </quve-page>
 	</template>
 	<script>
@@ -56,7 +60,7 @@
 					type: Object
 				},			
 				products : {
-					type: Object,
+					type: Array,
 					notify : true
 				},
 				route : {
@@ -76,8 +80,8 @@
 					}
 				}				
 			},
-			getSize : function(products){
-				return products.length+" producto(s)"
+			getSize : function(products){			
+				return products!=null?products.length+" producto(s)":"";
 			},
 			clearInput : function(){
                 this.$.search.value = '';
@@ -89,8 +93,7 @@
 					if (this.products===undefined){
 						console.log("loading products !!");
 						this.$.ajax.params = document.querySelector('quve-session').params; 
-						this.$.ajax.url = this.getUrl("products");
-						this.$.ajax.generateRequest();
+						this.$.ajax.doGet("products");
 					}
 				}
 			},

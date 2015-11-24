@@ -1,0 +1,66 @@
+<dom-module id="quve-page-processes">
+	<template>
+		<style>
+		</style>
+		<quve-api-ajax id="ajax"
+            on-response='loadProcesses'> 
+		</quve-api-ajax>
+		<quve-list items="{{processes}}">
+			<div noresult>No existe ningún proceso de Integración Continua</div>
+			<template is="dom-repeat" items="{{processes}}">
+				<quve-item-simple item={{item}} operator="{{operator}}"></quve-item-simple>
+			</template>			
+		</quve-list>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-page-processes",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				product : {
+					type: Object,
+					notify : true
+				},
+				stream : {
+					type: Object,
+					notify : true
+				},
+				component : {
+					type: Object,
+					notify: true
+				},
+				processes : {
+					type: Array,
+					notify: true
+				},
+				operator: function (){
+					return {
+						link : function(){
+							return "nada";
+						}
+					}
+				}				
+			},
+			selectedLoad : function(){
+				if (this.product!==undefined){
+					this.load("productId="+this.product.id+"&type=ADHOC");
+				};
+				if (this.stream!==undefined){
+					this.load("streamId="+this.stream.id);
+				};
+				if (this.component!==undefined){
+					this.load("componentId="+this.component.id);
+				};
+			},
+			load : function(query){
+				this.$.ajax.params = document.querySelector('quve-session').params; 
+				this.$.ajax.doGet("searchProcesses",query);
+			},		
+			loadProcesses : function(e){
+				this.processes = e.detail.response;
+			}
+		});
+	</script>
+</dom-module>

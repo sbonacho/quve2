@@ -6,12 +6,9 @@
 	<template>
 		<style>
 		</style>
-		<iron-ajax id="ajax"
-            headers='{"X-Requested-With": "XMLHttpRequest"}'
-            handleAs='json'
-            method='GET'
+		<quve-api-ajax id="ajax"
             on-response='loadProduct'> 
-		</iron-ajax>
+		</quve-api-ajax>
          <!-- Main Toolbar -->
         <quve-page has-back="true" title="{{product.name}}" subtitle="{{product.description}}" titleback="Listado de productos">
         	<div quvetools>
@@ -24,7 +21,9 @@
 		        </paper-tabs>        	
         	</div>
 	        <neon-animated-pages id="pages">
-		        <neon-animatable>MONITOR</neon-animatable>
+		        <neon-animatable>
+					<quve-monitor product={{product}}></quve-monitor>		        
+		        </neon-animatable>
 		        <neon-animatable>
 		        	<quve-product-streams product={{product}}></quve-product-streams>
 				</neon-animatable>
@@ -34,7 +33,9 @@
 		        <neon-animatable>
 		        	<quve-product-info product={{product}}></quve-product-info>
 		        </neon-animatable>
-		        <neon-animatable>OTROS PROCESOS</neon-animatable>
+		        <neon-animatable>
+		        	<quve-page-processes product={{product}}></quve-page-processes>
+		        </neon-animatable>
 	        </neon-animated-pages>    	        	
         </quve-page>
 	</template>
@@ -42,6 +43,7 @@
 		Polymer({
 			is : "quve-page-product",			
 			behaviors: [
+				QuveBehaviors.TabBehavior,
 				QuveBehaviors.SecurityBehavior
 			],
 			listeners : {
@@ -52,34 +54,22 @@
 					type: Object,
 					notify : true
 				},
-				key : {
-					type: String
-				},
 				route : {
 					type: String,
 					observer : "localLoad"
 				},
 				selected : {
 					type: Number,
-					observer : "changeTab",
-					value : 0
-				}
-			},
-			changeTab : function(n, o){
-				if (o>n){
-					this.$.pages.entryAnimation = "slide-from-left-animation";
-					this.$.pages.exitAnimation = "slide-right-animation";
-				}else{
-					this.$.pages.entryAnimation = "slide-from-right-animation";
-					this.$.pages.exitAnimation = "slide-left-animation";				
-				}
-				this.$.pages.selected = n;				
+					notify: true
+				}				
 			},
 			localLoad : function(route){
 				if ( route==="product" ){
-					var products = document.querySelector("quve-page-products").products;
+					this.selected = 0;
+					this.select(this.$.pages.selectedItem);
+					var products = document.querySelector("#productsPage").products;
 					if (products!=undefined){
-						var id = this.key;
+						var id = this.params.productId;
 						this.product = products.find(function (item){
 							return item.id===id;
 						});
@@ -90,8 +80,7 @@
 			},
 			load : function(){
 				this.$.ajax.params = document.querySelector('quve-session').params; 
-				this.$.ajax.url = this.getUrl("product",this.key);
-				this.$.ajax.generateRequest();
+				this.$.ajax.doGet("product",this.params.productId);
 			},		
 			loadProduct : function(e){
 				this.product = e.detail.response;

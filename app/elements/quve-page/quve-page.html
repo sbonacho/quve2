@@ -15,6 +15,11 @@
 			  margin: 0 0 50px 48px;
 			}
 			
+			:host .back {
+				font-size: 9px;
+				color: var(--accent-color-light);
+			}
+			
 			:host .bottom {
 			  background: var(--default-primary-color);
 			  margin-left: 0px;
@@ -34,7 +39,8 @@
         <paper-scroll-header-panel id="scrollpanel" condenses keep-condensed-header>         
 	        <paper-toolbar class="tall">
             	<paper-icon-button icon="menu" paper-drawer-toggle on-click="workAround"></paper-icon-button>	        
-	            <paper-icon-button class="back" id="backButton" icon="arrow-back" title="{{titleback}}" on-click="back"></paper-icon-button>
+	            <paper-icon-button id="backButton" icon="arrow-back" title="{{titleback}}" on-click="back"></paper-icon-button>
+	            <span class="back">{{titleback}}</span>
 	            <span class="flex"></span>
 	
 	            <!-- Toolbar icons -->
@@ -86,7 +92,7 @@
 				if (!this.hasBack)
 					this.$.backButton.style.display="none";
 			},
-			//Por el hecho de estar dentro del page el toggle no se lanza automáticamente
+			//Por el hecho de estar dentro del page el toggle no se lanza automáticamente 
 			workAround : function(){
 				document.querySelector("#paperDrawerPanel").togglePanel();			
 			}

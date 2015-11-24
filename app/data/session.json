@@ -1,1 +1,708 @@
-{"principal":{"user":{"id":null,"name":"Santiago García-Bonacho Rico","password":null,"email":null,"eciCode":"X50199GA","enabled":false,"username":"X50199GA","authorities":null,"accountNonLocked":false,"accountNonExpired":false,"credentialsNonExpired":false},"eciCode":"X50199GA","password":null,"general":{"roles":[{"roleset":{"1":[1,2,3,4,5,6,7,8,9],"2":[1,2,3,4,5,6,7,8,9,10],"3":[1,2,3,4,5,6,7,8,9],"4":[1,2,3,4,5,6,7,8,9],"5":[1,2,3,4,5,6,7,8,9],"6":[1,2,3,4,5,6,7,8,9],"7":[1,2,3,4,5,6,7,8,9],"8":[1,2,3,4,6,7],"9":[1,2,3,4,6,7],"10":[1,2,3,4,6,7],"11":[1,2,3,4,6,7],"12":[1,2,3,4,6,7],"13":[1,2,3,4,5,6,7,8,9],"15":[1,2,3,4,5,6,7,8,9],"16":[1,2,3,4,5,6,7,8,9]},"name":"Administración de Integración Continua","key":"e45ee471-1bc2-419c-b77e-eeb2cffb32c5","defaultProduct":false,"defaultGeneral":false},{"roleset":{"1":[0],"13":[0],"14":[0],"15":[0]},"name":"Menú Administrador","key":"4bf77aea-3f73-4125-95e8-ab8e7a62c454","defaultProduct":false,"defaultGeneral":false}]},"products":{"d6ca0db5-9182-4b6d-b196-04793c784f6e":{"roles":[{"roleset":{"1":[1],"2":[1],"3":[1],"4":[1],"5":[1],"6":[1],"7":[1],"13":[1,3]},"name":"General","key":"8e1eecbd-38df-45e6-ab03-c39d0beb7b99","defaultProduct":true,"defaultGeneral":false}]},"1138c4aa-791c-4a03-aa5f-c43a6a834f77":{"roles":[{"roleset":{"1":[1],"2":[1],"3":[1],"4":[1],"5":[1],"6":[1],"7":[1],"13":[1,3]},"name":"General","key":"8e1eecbd-38df-45e6-ab03-c39d0beb7b99","defaultProduct":true,"defaultGeneral":false}]},"5920bb4c-11f0-4162-81fd-86a56461d4ae":{"roles":[{"roleset":{"1":[1],"2":[1],"3":[1],"4":[1],"5":[1],"6":[1],"7":[1],"13":[1,3]},"name":"General","key":"8e1eecbd-38df-45e6-ab03-c39d0beb7b99","defaultProduct":true,"defaultGeneral":false}]},"e65690f6-4990-471f-bef8-38808c1e442f":{"roles":[{"roleset":{"1":[1],"2":[1],"3":[1],"4":[1],"5":[1],"6":[1],"7":[1],"13":[1,3]},"name":"General","key":"8e1eecbd-38df-45e6-ab03-c39d0beb7b99","defaultProduct":true,"defaultGeneral":false}]},"3e2e7db0-45de-4f01-a084-d6091dc24e31":{"roles":[{"roleset":{"1":[1],"2":[1],"3":[1],"4":[1],"5":[1],"6":[1],"7":[1],"13":[1,3]},"name":"General","key":"8e1eecbd-38df-45e6-ab03-c39d0beb7b99","defaultProduct":true,"defaultGeneral":false}]},"ebff9d00-b2e1-4065-854f-d639895a03b8":{"roles":[{"roleset":{"1":[1],"2":[1],"3":[1],"4":[1],"5":[1],"6":[1],"7":[1],"13":[1,3]},"name":"General","key":"8e1eecbd-38df-45e6-ab03-c39d0beb7b99","defaultProduct":true,"defaultGeneral":false}]},"f76a78b0-4aca-4b0d-8525-e13d58908a80":{"roles":[{"roleset":{"1":[1],"2":[1],"3":[1],"4":[1],"5":[1],"6":[1],"7":[1],"13":[1,3]},"name":"General","key":"8e1eecbd-38df-45e6-ab03-c39d0beb7b99","defaultProduct":true,"defaultGeneral":false}]}},"streams":{},"components":{},"enabled":false,"username":"X50199GA","productIds":["d6ca0db5-9182-4b6d-b196-04793c784f6e","5920bb4c-11f0-4162-81fd-86a56461d4ae","1138c4aa-791c-4a03-aa5f-c43a6a834f77","e65690f6-4990-471f-bef8-38808c1e442f","3e2e7db0-45de-4f01-a084-d6091dc24e31","ebff9d00-b2e1-4065-854f-d639895a03b8","f76a78b0-4aca-4b0d-8525-e13d58908a80"],"authorities":null,"accountNonLocked":false,"accountNonExpired":false,"credentialsNonExpired":false},"key":"b2875a6b-e05e-4181-97ba-3643303463db","authenticated":true,"token":null,"name":"X50199GA","details":{"id":null,"name":"Santiago García-Bonacho Rico","password":null,"email":null,"eciCode":"X50199GA","enabled":false,"username":"X50199GA","authorities":null,"accountNonLocked":false,"accountNonExpired":false,"credentialsNonExpired":false},"credentials":null,"authorities":null}
+{
+	"principal": {
+		"user": {
+			"id": null,
+			"name": "Santiago García-Bonacho Rico",
+			"password": null,
+			"email": null,
+			"eciCode": "X50199GA",
+			"authorities": null,
+			"username": "X50199GA",
+			"accountNonExpired": false,
+			"accountNonLocked": false,
+			"credentialsNonExpired": false,
+			"enabled": false
+		},
+		"eciCode": "X50199GA",
+		"password": null,
+		"general": {
+			"roles": [{
+				"roleset": {
+					"1": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9],
+					"2": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10],
+					"3": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9],
+					"4": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9],
+					"5": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9],
+					"6": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9],
+					"7": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9],
+					"8": [1,
+					2,
+					3,
+					4,
+					6,
+					7],
+					"9": [1,
+					2,
+					3,
+					4,
+					6,
+					7],
+					"10": [1,
+					2,
+					3,
+					4,
+					6,
+					7],
+					"11": [1,
+					2,
+					3,
+					4,
+					6,
+					7],
+					"12": [1,
+					2,
+					3,
+					4,
+					6,
+					7],
+					"13": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9],
+					"15": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9],
+					"16": [1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9]
+				},
+				"name": "Administración de Integración Continua",
+				"key": "e45ee471-1bc2-419c-b77e-eeb2cffb32c5",
+				"defaultProduct": false,
+				"defaultGeneral": false
+			},
+			{
+				"roleset": {
+					"1": [0],
+					"13": [0],
+					"14": [0],
+					"15": [0]
+				},
+				"name": "Menú General Administración",
+				"key": "df03e909-aeaf-49be-887e-260e384ac9b2",
+				"defaultProduct": false,
+				"defaultGeneral": false
+			}]
+		},
+		"products": {
+			"2c213a41-39d7-4fc8-89d5-61c58de6c3cc": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"eaa67cc0-0a5e-42ba-bfff-738695553abf": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"71006cb5-f4d6-4eab-8af5-f53f304e5ee4": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"b287e75c-7808-48e3-a231-49486660bd3e": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"9aa92672-5417-41e2-b020-98167d666fd7": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"f03b6ef5-d22a-4ae3-8906-ef293e5de72e": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"d32c9c80-3f4f-40b4-99c1-d6642a929bc2": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"009b5e11-5a59-41f8-a864-b9fe16f49bc4": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"38aa6d80-1bd7-11e5-a2f5-bb5b113c8de8": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"8c0db422-d017-4b4a-bae0-9bfb2ac2af04": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"79fa1b50-1c6b-4fa3-9cfb-b1f383013e58": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"9e116427-72e6-4ea7-a095-418f8b87e715": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"b2284189-fc79-4300-aef9-bde7887eeb72": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"c9ad9e2f-c575-4791-96b7-0a52161b1f4f": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"9445a851-894f-4425-9e14-78d6cea4fc41": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"b2b45767-45d2-4e67-92d7-2a3bc851a893": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"a7955ab2-78e5-4886-ae85-8a3fad636fe2": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"8bf55bf9-287b-49c6-8e1f-19a56dc03e2b": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"518849e4-5b93-4cca-a677-3f2e054be2b2": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"721a292b-76c6-4cbd-acd4-fbbdfa00cf18": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"1b5bac93-142b-4c00-a8e9-a5bedb5336d9": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"a819a42f-760f-47bf-9777-2ad230add675": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"a313e53f-cdd4-40c4-8dd1-1a83d6bb6440": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"b72c047e-66de-4697-a822-18fe5a74f3ee": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"bbc86115-5e92-44ea-b233-7b4c23f27d8d": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"84f53703-5019-477c-baab-864bb6ad8c4b": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			},
+			"7f43d923-aa84-4e90-ad8c-36bda60a5631": {
+				"roles": [{
+					"roleset": {
+						"1": [1],
+						"2": [1],
+						"3": [1],
+						"4": [1],
+						"5": [1],
+						"6": [1],
+						"7": [1],
+						"13": [1]
+					},
+					"name": "General",
+					"key": "8e1eecbd-38df-45e6-ab03-c39d0beb7b99",
+					"defaultProduct": true,
+					"defaultGeneral": false
+				}]
+			}
+		},
+		"streams": {
+			
+		},
+		"components": {
+			
+		},
+		"authorities": null,
+		"username": "X50199GA",
+		"accountNonExpired": false,
+		"accountNonLocked": false,
+		"credentialsNonExpired": false,
+		"enabled": false,
+		"productIds": ["2c213a41-39d7-4fc8-89d5-61c58de6c3cc",
+		"eaa67cc0-0a5e-42ba-bfff-738695553abf",
+		"71006cb5-f4d6-4eab-8af5-f53f304e5ee4",
+		"b287e75c-7808-48e3-a231-49486660bd3e",
+		"f03b6ef5-d22a-4ae3-8906-ef293e5de72e",
+		"9aa92672-5417-41e2-b020-98167d666fd7",
+		"d32c9c80-3f4f-40b4-99c1-d6642a929bc2",
+		"009b5e11-5a59-41f8-a864-b9fe16f49bc4",
+		"38aa6d80-1bd7-11e5-a2f5-bb5b113c8de8",
+		"8c0db422-d017-4b4a-bae0-9bfb2ac2af04",
+		"79fa1b50-1c6b-4fa3-9cfb-b1f383013e58",
+		"9e116427-72e6-4ea7-a095-418f8b87e715",
+		"b2284189-fc79-4300-aef9-bde7887eeb72",
+		"c9ad9e2f-c575-4791-96b7-0a52161b1f4f",
+		"9445a851-894f-4425-9e14-78d6cea4fc41",
+		"b2b45767-45d2-4e67-92d7-2a3bc851a893",
+		"a7955ab2-78e5-4886-ae85-8a3fad636fe2",
+		"8bf55bf9-287b-49c6-8e1f-19a56dc03e2b",
+		"518849e4-5b93-4cca-a677-3f2e054be2b2",
+		"721a292b-76c6-4cbd-acd4-fbbdfa00cf18",
+		"1b5bac93-142b-4c00-a8e9-a5bedb5336d9",
+		"a819a42f-760f-47bf-9777-2ad230add675",
+		"a313e53f-cdd4-40c4-8dd1-1a83d6bb6440",
+		"b72c047e-66de-4697-a822-18fe5a74f3ee",
+		"bbc86115-5e92-44ea-b233-7b4c23f27d8d",
+		"7f43d923-aa84-4e90-ad8c-36bda60a5631",
+		"84f53703-5019-477c-baab-864bb6ad8c4b"]
+	},
+	"key": "215d1721-ff6b-4dfb-a27b-5aec9340ebb5",
+	"authenticated": true,
+	"token": null,
+	"credentials": null,
+	"name": "X50199GA",
+	"authorities": null,
+	"details": {
+		"id": null,
+		"name": "Santiago García-Bonacho Rico",
+		"password": null,
+		"email": null,
+		"eciCode": "X50199GA",
+		"authorities": null,
+		"username": "X50199GA",
+		"accountNonExpired": false,
+		"accountNonLocked": false,
+		"credentialsNonExpired": false,
+		"enabled": false
+	}
+}

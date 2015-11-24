@@ -1,6 +1,4 @@
-<link rel="import" href="quve-component-info.html">
-
-<dom-module id="quve-page-component">
+<dom-module id="quve-page-processes">
 	<template>
 		<style>
 		</style>
@@ -17,21 +15,15 @@
 		        </paper-tabs>        	
         	</div>
 	        <neon-animated-pages id="pages">
-		        <neon-animatable>
-					<quve-monitor index={{selected}} component={{component}}></quve-monitor>		        
-		        </neon-animatable>
-		        <neon-animatable>
-		        	<quve-page-processes product={{product}} stream={{stream}} component={{component}}></quve-page-processes>
-				</neon-animatable>	        
-		        <neon-animatable>
-		        	<quve-component-info component={{component}}></quve-component-info>
-		        </neon-animatable>
+		        <neon-animatable>MONITOR</neon-animatable>
+		        <neon-animatable>INTEGRACIÓN CONTINUA</neon-animatable>
+		        <neon-animatable>INFORMACIÓN</neon-animatable>
 	        </neon-animated-pages>    	        	
         </quve-page>
 	</template>
 	<script>
 		Polymer({
-			is : "quve-page-component",			
+			is : "quve-page-processes",			
 			behaviors: [
 				QuveBehaviors.TabBehavior,
 				QuveBehaviors.SecurityBehavior
@@ -57,23 +49,16 @@
 					observer : "localLoad"
 				}
 			},
-			init : function (product){
-				this.product = product;
-				var streamId = this.params.streamId;
-				var componentId = this.params.componentId;
-				this.stream = product.streams.find(function (item){
-					return item.id===streamId;
-				});
-				if (this.stream!==null)
-					this.component = this.stream.components.find(function (item){
-						return item.id===componentId;
-					});			
-			},
 			localLoad : function(route){
-				if ( route==="component" ){
-					var product = document.querySelector("#productPage").product;
-					if (product!==undefined)
-						this.init(product);
+				if ( route==="processes" ){
+					var stream = document.querySelector("quve-page-stream").stream;
+					if (stream!==undefined){
+						var id = this.params.componentId;
+						this.stream = stream;
+						this.component = stream.components.find(function (item){
+							return item.id===id;
+						});
+					}
 					if (this.stream===undefined)
 						this.load();
 				} 
@@ -83,7 +68,16 @@
 				this.$.ajax.doGet("product",this.params.productId);
 			},		
 			loadComponent : function(e){
-				this.init(e.detail.response);
+				this.product = e.detail.response;
+				var streamId = this.params.streamId;
+				var componentId = this.params.componentId;
+				this.stream = this.product.streams.find(function (item){
+					return item.id===streamId;
+				});
+				if (this.stream!==null)
+					this.component = this.stream.components.find(function (item){
+						return item.id===componentId;
+					});
 			},
 			goBack : function(){
 				document.location.href = String.format("#/products/{0}/streams/{1}",this.params.productId,this.params.streamId);

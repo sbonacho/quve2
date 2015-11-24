@@ -1,0 +1,68 @@
+<dom-module id="quve-monitor">
+	<template>
+		<style>
+		</style>
+		<quve-api-ajax id="ajax"
+            on-response='loadMonitor'> 
+		</quve-api-ajax>
+		<quve-list items="{{executions}}">
+			<div noresult>No existe ningún trabajo en Integración Continua</div>
+			<template is="dom-repeat" items="{{executions}}">
+				<quve-item key={{item.id}} name={{item.process.name}} description={{item.process.description}} translate={{item.type}} operator="{{operator}}">
+				</quve-item>
+			</template>			
+		</quve-list>
+	</template>
+	<script>
+		Polymer({
+			is : "quve-monitor",			
+			behaviors: [
+				QuveBehaviors.SecurityBehavior
+			],
+			properties : {
+				product : {
+					type: Object,
+					notify : true
+				},
+				stream : {
+					type: Object,
+					notify : true
+				},
+				component : {
+					type: Object,
+					notify: true
+				},
+				executions : {
+					type: Array,
+					notify: true
+				},
+				operator : {
+					type: Object,
+					value: {
+						link : function(){
+							return "nada";
+						}	
+					}
+				}				
+			},
+			selectedLoad : function(){
+				if (this.product!==undefined){
+					this.load("productId="+this.product.id);
+				};
+				if (this.stream!==undefined){
+					this.load("streamId="+this.stream.id);
+				};
+				if (this.component!==undefined){
+					this.load("componentId="+this.component.id);
+				};
+			},
+			load : function(query){
+				this.$.ajax.params = document.querySelector('quve-session').params; 
+				this.$.ajax.doGet("searchExecutions",query);
+			},		
+			loadMonitor : function(e){
+				this.executions = e.detail.response;
+			}
+		});
+	</script>
+</dom-module>

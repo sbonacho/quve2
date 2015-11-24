@@ -6,10 +6,32 @@
     "paper-elements": "PolymerElements/paper-elements#1.0.1",
     "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
+    "sockjs": "sockjs/sockjs-client#1.0.3",
+    "stompjs" : "jmesnil/stomp-websocket#2.3.4",
     "page": "visionmedia/page.js#~1.6.3"
   },
   "devDependencies": {
     "web-component-tester": "*",
     "test-fixture": "PolymerElements/test-fixture#^1.0.0"
-  }
+  },
+  "version": "1.1.0",
+  "homepage": "https://github.com/sbonacho/quve2",
+  "description": "App - Cliente Plataforma de Integración Continua y Calidad",
+  "main": "app/index.html",
+  "keywords": [
+    "quve",
+    "calidad"
+  ],
+  "authors": [
+    "Santiago García-Bonacho Rico"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
 }

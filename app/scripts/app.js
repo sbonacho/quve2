@@ -6,10 +6,6 @@
 	// Learn more about auto-binding templates at http://goo.gl/Dx1u2g
 	var app = document.querySelector('#app');
 	
-	app.goHome = function(){
-		document.location.href = "#/";
-	}
-	
 	app.quveContext = {};
 	
 	app.displayInstalledToast = function() {

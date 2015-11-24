@@ -60,7 +60,7 @@
     </head>
 
     <body unresolved class="fullbleed layout vertical">
-        <span id="browser-sync-binding"></span>
+    <span id="browser-sync-binding"></span>
     <quve-session></quve-session>
     <template is="dom-bind" id="app">
 
@@ -70,7 +70,7 @@
 
                 <!-- Drawer Toolbar -->        
                 <paper-toolbar id="drawerToolbar">
-                    <i on-click="goHome" style="margin:8px; font-size: 4em; cursor: pointer; cursor: hand;" class="icon-logo"></i>
+                    <i style="margin:8px; font-size: 4em; cursor: pointer; cursor: hand;" class="icon-logo"></i>
                     <span style="line-height: 1.1;" class="paper-font-caption">Plataforma<br>de Integración<br>Continua y Calidad</span>
                 </paper-toolbar>
 
@@ -80,17 +80,9 @@
 
             <!-- Main Area -->
             <iron-pages main attr-for-selected="data-route" selected="{{route}}">
-                <section data-route="home">
-                    <paper-material elevation="1">
-                        <p class="paper-font-subhead">QUVE: Plataforma de Integración Continua y Calidad</p>
-                    </paper-material>
-                    <paper-material elevation="1">
-                        <p class="paper-font-body2">Otra carta</p>
-                    </paper-material>
-                </section>
 
                 <section data-route="products">
-                    <quve-page-products route={{route}} qv-role="1.0"></quve-page-products>
+                    <quve-page-products id="productsPage" route={{route}} qv-role="1.0"></quve-page-products>
                 </section>
 
                 <section data-route="product">
@@ -103,6 +95,10 @@
                 
                 <section data-route="component">
                     <quve-page-component id="componentPage" route={{route}} qv-role="1.1"></quve-page-component>
+                </section>
+
+                <section data-route="monitor">
+                    <quve-page-monitor id="monitorPage" route={{route}} qv-role="13.0"></quve-page-monitor>
                 </section>
 
             </iron-pages> 

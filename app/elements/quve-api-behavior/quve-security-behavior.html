@@ -1,12 +1,13 @@
-<link rel="import" href="quve-api-behavior-test.html">
-
 <script>
     QuveBehaviors.SecurityBehaviorImpl = {
         properties: {
             qvRole: {
                 type: String,
                 notify: true
-            }
+            },
+			params : {
+				type: Object
+			}
         },
         ready: function () {
             var those = this;
@@ -32,7 +33,6 @@
 
     /** @quveBehavior */
     QuveBehaviors.SecurityBehavior = [
-        QuveBehaviors.Api,
         QuveBehaviors.SecurityBehaviorImpl
     ];
 </script>
